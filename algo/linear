@@ -1,0 +1,25 @@
+import time
+import random
+def linear_search(arr,n,key):
+    if (n<0):
+        return -1
+    elif(arr[n-1] == key ):
+        return n
+    else:
+        return linear_search(arr,n-1,key)
+
+begin = time.time()
+n = int(input("Enter the number of elements : "))
+li = random.sample(range(1,100000),n)
+
+if(linear_search(li,n,li[-1]) != -1):  
+    print("The element is found in the index ",linear_search(li,n,li[-1])-1) 
+else:
+    print("The element is not found")
+end = time.time()
+print(str(end-begin))
+
+# if(res):
+#     print("The element is found at index ",res-1)
+# else:
+#     print("The element is not found")

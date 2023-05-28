@@ -1,0 +1,50 @@
+fp1 = open("file.c","r+")
+store = fp1.readlines()
+words = []
+datatypes = ['int','void','double','char']
+delimiters =[';','(',')','{','}','"','/*','//','*/',',',]
+keywords=['#include<stdio.h>','printf','scanf','return','for','while']
+for x in store:
+    words+=x.split()
+#print(words)
+found_comments=[]
+found_delimiters=[]
+found_keywords=[]
+found_identifiers=[]
+for x in store:
+    st=x.split()
+    i=0
+    comm=''
+    while i<len(st):
+        if st[i]=='//':
+            #found_comments.append(''.join(st[i+1:]))
+            st = st[i+1:]
+            comm=''
+            for x in st:
+                comm+=(x+" ")
+            found_comments.append(comm)
+            break
+        i+=1
+i = 0
+while i<len(words):
+    if words[i] in delimiters:
+        if words[i]not in found_delimiters:
+             found_delimiters.append(words[i])
+    if words[i] in datatypes:
+        found_keywords.append(words[i])
+        i+=1
+        if words[i]not in found_identifiers:
+            found_identifiers.append(words[i])
+    if words[i] in keywords:
+        if words[i]not in found_keywords:
+            found_keywords.append(words[i])
+    if words[i] == '/*':
+        i+=1
+        comm=''
+        while words[i]!='*/':
+            comm+=words[i]
+            comm+=' '
+            i+=1
+        found_comments.append(comm)
+    i+=1
+print("keywords:",found_keywords,'\n',"comments:",found_comments,'\n',"identifiers:",found_identifiers,'\n',"delimiters:",found_delimiters)

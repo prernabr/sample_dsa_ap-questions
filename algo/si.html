@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Interest Calculator</title>
+    <style>
+        /* Basic styling for the page */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e5dfdf;
+            text-align: center;
+        }
+        .container {
+            max-width: 400px;
+            margin: 5;
+            padding: 70px;
+            /* background-color: #d5d5d5; */
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+        }
+        form {
+            margin-top: 20px;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #5e646b;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        #result {
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Simple Interest Calculator</h1>
+        <form onsubmit="calculateSimpleInterest(); return false;">
+            <input type="number" id="principal" placeholder="Principal Amount">
+            <input type="number" id="rate" placeholder="Interest Rate">
+            <input type="number" id="time" placeholder="Time Period">
+            <input type="submit" value="Calculate">
+        </form>
+
+        <button oneclick="HOMEPAGE()">home</button><br>
+        <div id="result"></div>
+    </div>
+    <script>
+        function calculateSimpleInterest() {
+            
+            var principal = parseFloat(document.getElementById("principal").value);
+            var rate = parseFloat(document.getElementById("rate").value);
+            var time = parseFloat(document.getElementById("time").value);
+
+            
+            var interest = (principal * rate * time) / 100;
+
+            
+            document.getElementById("result").innerHTML = "Simple Interest: ₹ " + interest.toFixed(2);
+
+
+        }
+        function HOMEPAGE() {
+			window.location.href = "supcal.html";
+		}
+    </script>
+</body>
+</html>
